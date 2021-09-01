@@ -13,7 +13,6 @@ public class BinaryTree {
     protected void traverse(TreeNode node, StringBuffer sb){
         if(node == null)
             return;
-        //sb.append(node.getItem());
         sb.append(MessageFormat.format("{0}{1}", node.getItem(), System.getProperty("Line.separator")));
         traverse(node.getLeft(), sb);
         traverse(node.getRight(), sb);
@@ -59,6 +58,9 @@ public class BinaryTree {
         System.out.println(sb.toString());
     }
 
+    /***
+     * Displays the tree by level
+     */
     public void printLevel(){
         Queue<AbstractMap.SimpleEntry<Integer, Integer>> que = new LinkedList<>();
         StringBuffer sb = new StringBuffer();
@@ -68,18 +70,26 @@ public class BinaryTree {
         System.out.println(sb.toString());
     }
 
+    /***
+     * Creates a balanced binary tree from a sorted array
+     * @param sortedArray sorted data
+     * @return balanced binary tree
+     */
     public static BinaryTree toBalancedBinaryTree(int[] sortedArray) {
         BinaryTree bTree = new BinaryTree();
         BinaryTree.insertBalanced(0, sortedArray.length, sortedArray, bTree);
         return bTree;
     }
 
-//    1) Get the Middle of the array and make it root.
-//    2) Recursively do same for left half and right half.
-//    a) Get the middle of left half and make it left child of the root
-//    created in step 1.
-//    b) Get the middle of right half and make it right child of the
-//    root created in step 1.
+    /***
+     * Algorithm for sorted array:
+     * 1) Get the Middle of the array and make it root.
+     * 2) Recursively do same for left half and right half.
+     * @param rangeStart starting index of array
+     * @param rangeEnd ending index of array
+     * @param array entire sorted array to create tree from
+     * @param bTree tree to insert items into
+     */
     protected static void insertBalanced(int rangeStart, int rangeEnd, int[] array, BinaryTree bTree) {
         int len = rangeEnd - rangeStart;
         if(len < 1)
@@ -89,17 +99,4 @@ public class BinaryTree {
         insertBalanced(rangeStart, middle, array, bTree);
         insertBalanced(middle+1, rangeEnd, array, bTree);
     }
-
-//    protected static void insertBal(int[] array, BinaryTree bTree) {
-//        if(array.length == 0)
-//            return;
-//        int middle = (array.length-1) >> 1;
-//        bTree.add(array[middle]);
-//            // left middle
-//        int left[] = Arrays.copyOfRange(array, 0, middle);
-//        insertBal(left, bTree);
-//            // right middle
-//        int right[] = IntStream.range(middle+1, array.length).map(i->array[i]).toArray();
-//        insertBal(right, bTree);
-//    }
 }
