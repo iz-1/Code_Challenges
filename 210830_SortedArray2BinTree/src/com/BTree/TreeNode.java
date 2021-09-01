@@ -1,4 +1,4 @@
-package com.company.BTree;
+package com.BTree;
 
 public class TreeNode {
     Integer item;

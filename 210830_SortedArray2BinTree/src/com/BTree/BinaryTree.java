@@ -1,4 +1,4 @@
-package com.company.BTree;
+package com.BTree;
 
 import java.text.MessageFormat;
 import java.util.*;

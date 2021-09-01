@@ -1,6 +1,6 @@
-package com.company;
+package com;
 
-import com.company.BTree.BinaryTree;
+import com.BTree.BinaryTree;
 
 import java.util.Arrays;
 
